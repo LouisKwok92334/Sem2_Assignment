@@ -2,7 +2,7 @@ public class LinkedList {
 
 	private ListNode head;
 	private ListNode tail;
-	private int length;		// the length of the list
+	private int length;        // the length of the list
 	private Comparator comparator;
 
 	public LinkedList(Comparator comparator) {
@@ -61,27 +61,27 @@ public class LinkedList {
 		length--;
 		return item;
 	}
-	
+
 	public int count() {
 		return length;
 	}
-	
+
 	//students need to revise toString method
 	public String toString() {
-		String str = "[ ";
+		String str = "--------------------------------------\n";
 		ListNode current = head;
 		while (current != null) {
-			str = str + current.getData() + " ";
+			str += current.getData() + "\n";
 			current = current.getNext();
 		}
-		return str + " ]";
+		return str + "--------------------------------------";
 	}
 
 	//to be completed ...
 	// Method remove(int) is to remove a ListNode from the LinkedList with a specific Member ID
-	public void remove(int targetID) throws NoneOfOrderException{
+	public void remove(int targetID) throws EmptyListException{
 		if (isEmpty()) {
-			throw new NoneOfOrderException();
+			throw new EmptyListException();
 		}
 		if (((FoodOrder)head.getData()).getMemberID() == targetID) {
 			removeFromHead();
@@ -89,7 +89,7 @@ public class LinkedList {
 			removeFromTail();
 		} else {
 			ListNode current = head;
-			while (current.getNext() != null && ((FoodOrder)current.getNext().getData()).getMemberID() != targetID){
+			while (current.getNext() != null){
 				if (((FoodOrder)current.getNext().getData()).getMemberID() == targetID) {
 					current.setNext(current.getNext().getNext());
 					length--;
@@ -97,7 +97,7 @@ public class LinkedList {
 				}
 				current = current.getNext();
 			}
-			throw new NoneOfOrderException();
+			throw new EmptyListException();
 		}
 	}
 
@@ -105,7 +105,7 @@ public class LinkedList {
     // Method add(Object) is to insert a new ListNode into the LinkedList in a correct position
 	public void add(Object item) {
 		if (isEmpty()){
-			head = tail = new ListNode(item);
+			addToHead(item);
 		} else {
 			if (comparator.isLessThan(item, head.getData())){
 				addToHead(item);
@@ -118,6 +118,7 @@ public class LinkedList {
 						ListNode newNode = new ListNode(item);
 						newNode.setNext(current.getNext());
 						current.setNext(newNode);
+						length++;
 						return;
 					}
 					current = current.getNext();

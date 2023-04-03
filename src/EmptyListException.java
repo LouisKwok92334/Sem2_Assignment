@@ -1,6 +1,6 @@
 class EmptyListException extends RuntimeException {
     public EmptyListException ()
     {
-        super("List is empty");
+        super("None of order");
     }
 } // class EmptyListException
