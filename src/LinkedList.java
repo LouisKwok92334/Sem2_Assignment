@@ -103,7 +103,7 @@ public class LinkedList {
 
 	//to be completed ...
     // Method add(Object) is to insert a new ListNode into the LinkedList in a correct position
-	public void add(Object item) {
+	public void add(Object item) throws InvalidInputException {
 		if (isEmpty()){
 			addToHead(item);
 		} else {
@@ -123,6 +123,7 @@ public class LinkedList {
 					}
 					current = current.getNext();
 				}
+				throw new InvalidInputException();
 			}
 		}
 	}

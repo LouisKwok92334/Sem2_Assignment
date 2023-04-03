@@ -3,4 +3,4 @@ class InvalidInputException extends RuntimeException {
     {
         super("Invalid input! Please input again.");
     }
-} // class EmptyListException
+} // class InvalidInputException
